@@ -1,0 +1,13 @@
+---
+- name: install CUDA and drivers
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: "yes"
+  with_items:
+    - "nvidia-cuda-dev"
+    - "nvidia-cuda-toolkit"
+    - "nvidia-367"
+  become: true
+
+
