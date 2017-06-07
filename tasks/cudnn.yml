@@ -1,0 +1,12 @@
+---
+- name: "upload cudnn packages"
+  copy:
+    src: "cudnn"
+    dest: "{{ ansible_env.HOME }}"
+
+- name: "install cudnn"
+  apt:
+    deb: "{{ ansible_env.HOME }}/cudnn/{{ item }}"
+  become: true
+  with_items: "{{ cudnn_packages }}"
+

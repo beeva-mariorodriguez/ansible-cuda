@@ -1,0 +1,7 @@
+---
+repo_package_url: "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
+cudnn_packages:
+  - "libcudnn6_6.0.21-1+cuda8.0_amd64.deb"
+  - "libcudnn6-dev_6.0.21-1+cuda8.0_amd64.deb"
+  - "libcudnn6-doc_6.0.21-1+cuda8.0_amd64.deb"
+

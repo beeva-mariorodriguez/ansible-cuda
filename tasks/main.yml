@@ -1,13 +1,34 @@
 ---
-- name: install CUDA and drivers
+- name: delete ubuntu CUDA packages
   apt:
     name: "{{ item }}"
-    state: "present"
-    update_cache: "yes"
+    state: "absent"
   with_items:
-    - "nvidia-cuda-dev"
     - "nvidia-cuda-toolkit"
-    - "nvidia-367"
+    - "nvidia-cuda-dev"
   become: true
 
+- name: install nvidia CUDA repo
+  apt:
+    deb: "{{ repo_package_url }}"
+  become: true
+
+- name: install nvidia drivers and CUDA
+  apt:
+    name: "cuda"
+    update_cache: "yes"
+  with_items:
+    - "nvidia-375"
+    - "nvidia-375-dev"
+    - "cuda"
+  become: true
+
+- name: add /usr/local/cuda/bin/ to PATH
+  copy:
+    src: "cuda.sh"
+    dest: "/etc/profile.d/cuda.sh"
+  become: true
+
+- include: cudnn.yml
+  when: install_cudnn
 
